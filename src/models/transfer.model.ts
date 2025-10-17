@@ -18,5 +18,3 @@ export type TransferListingDocument = InferSchemaType<typeof transferListingSche
 };
 
 export const TransferListingModel = mongoose.model("TransferListing", transferListingSchema);
-
-

@@ -24,5 +24,3 @@ export const teamController = {
     res.status(httpStatus.ACCEPTED).json(result);
   },
 };
-
-

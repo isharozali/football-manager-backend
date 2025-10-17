@@ -35,5 +35,3 @@ export const authService = {
     return { user: { id: String(user._id), email: user.email }, accessToken: token };
   },
 };
-
-

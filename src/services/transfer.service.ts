@@ -32,7 +32,9 @@ export const transferService = {
         .select({ _id: 1 })
         .exec();
       const teamIds = teams.map((t) => t._id);
-      listings = listings.filter((l) => teamIds.some((id) => String(id) === String(l.sellerTeamId)));
+      listings = listings.filter((l) =>
+        teamIds.some((id) => String(id) === String(l.sellerTeamId)),
+      );
     }
     return listings;
   },
@@ -137,5 +139,3 @@ export const transferService = {
     session.endSession();
   },
 };
-
-

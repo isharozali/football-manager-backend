@@ -12,5 +12,3 @@ export const INITIAL_SQUAD_COMPOSITION = {
   MID: 6,
   ATT: 5,
 } as const;
-
-

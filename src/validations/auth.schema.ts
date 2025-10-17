@@ -6,5 +6,3 @@ export const loginOrRegisterSchema = z.object({
 });
 
 export type LoginOrRegisterInput = z.infer<typeof loginOrRegisterSchema>;
-
-

@@ -59,5 +59,3 @@ export async function createTeamForUser(userId: string): Promise<TeamDocument> {
   });
   return team;
 }
-
-

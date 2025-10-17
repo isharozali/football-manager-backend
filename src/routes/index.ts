@@ -8,5 +8,3 @@ export const router = Router();
 router.use("/v1/auth", authRouter);
 router.use("/v1/teams", teamRouter);
 router.use("/v1/transfers", transferRouter);
-
-

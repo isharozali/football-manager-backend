@@ -10,12 +10,14 @@ export function validate(part: Part, schema: ZodSchema<unknown>) {
     if (!parsed.success) {
       res
         .status(httpStatus.BAD_REQUEST)
-        .json({ message: "Validation error", code: "VALIDATION_ERROR", details: parsed.error.format() });
+        .json({
+          message: "Validation error",
+          code: "VALIDATION_ERROR",
+          details: parsed.error.format(),
+        });
       return;
     }
     (req as Record<string, unknown>)[part] = parsed.data as unknown;
     next();
   };
 }
-
-

@@ -3,6 +3,7 @@
 A pragmatic Node.js + TypeScript backend for a football fantasy manager. It follows a clean layered architecture (routes → controllers → services → models), uses MongoDB (Mongoose), Zod for validation, JWT for auth, and a tiny Mongo-backed worker for background jobs (team creation).
 
 ### Highlights
+
 - Strict TypeScript, no `any`, no non-null assertions.
 - Zod input validation at the edge.
 - JWT access tokens with Bearer auth.
@@ -13,15 +14,18 @@ A pragmatic Node.js + TypeScript backend for a football fantasy manager. It foll
 ## Getting Started
 
 ### Prerequisites
+
 - Node.js >= 18.17
 - A running MongoDB instance (e.g. `mongodb://localhost:27017`)
 
 ### Install
+
 ```bash
 pnpm install
 ```
 
 ### Configure
+
 Copy `.env` (created during setup) and adjust as needed:
 
 ```env
@@ -33,6 +37,7 @@ BCRYPT_SALT_ROUNDS=12
 ```
 
 ### Run (API)
+
 ```bash
 pnpm run dev
 ```
@@ -40,6 +45,7 @@ pnpm run dev
 API will start on `http://localhost:4000`.
 
 ### Run (Worker)
+
 ```bash
 pnpm exec tsx src/jobs/worker.ts
 ```
@@ -51,25 +57,30 @@ This worker polls MongoDB for pending jobs and processes team creation in the ba
 Base URL: `/api`
 
 Auth
+
 - POST `/v1/auth/login-or-register` — body: `{ email, password }`
   - Returns `{ user: { id, email }, accessToken }`.
 
 Teams
+
 - GET `/v1/teams/me` — requires `Authorization: Bearer <token>`
 - POST `/v1/teams/create-job` — enqueue async team creation
 
 Transfer Market
+
 - GET `/v1/transfers` — query: `playerName`, `teamName`, `minPrice`, `maxPrice`
 - POST `/v1/transfers/list` — body: `{ playerId, askingPrice }`
 - POST `/v1/transfers/unlist` — body: `{ playerId }`
 - POST `/v1/transfers/buy` — body: `{ listingId }`
 
 Notes
+
 - Buy price is 95% of asking price.
 - Teams must maintain 15–25 players.
 - Team creation is asynchronous; poll `GET /v1/teams/me` after enqueuing.
 
 ## Project Structure
+
 ```
 src/
   app/                 # express app composition
@@ -85,11 +96,13 @@ src/
 ```
 
 ## Development
+
 - Lint: `pnpm run lint`
 - Format: `pnpm run format`
 - Build: `pnpm run build`
 
 ## Time Report
+
 - Project scaffolding and tooling: ~30m
 - Auth (Zod, JWT, bcrypt) and middleware: ~40m
 - Models (User, Team, Player, Transfer, Job): ~30m
@@ -100,6 +113,7 @@ src/
 Total: ~3h 40m
 
 ## Notes & Trade-offs
+
 - The job queue is intentionally minimal to keep dependencies light. In production, consider BullMQ or a managed queue.
 - Text search on player name uses a basic index; a more advanced search service can be introduced later.
 - Validation uses Zod at the service boundary for clarity and testability.

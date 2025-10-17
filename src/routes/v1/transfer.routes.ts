@@ -13,7 +13,10 @@ export const router = Router();
 
 router.get("/", requireAuth, validate("query", transferListQuerySchema), transferController.list);
 router.post("/list", requireAuth, validate("body", listBodySchema), transferController.addToMarket);
-router.post("/unlist", requireAuth, validate("body", unlistBodySchema), transferController.removeFromMarket);
+router.post(
+  "/unlist",
+  requireAuth,
+  validate("body", unlistBodySchema),
+  transferController.removeFromMarket,
+);
 router.post("/buy", requireAuth, validate("body", buyBodySchema), transferController.buy);
-
-

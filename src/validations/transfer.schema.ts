@@ -19,5 +19,3 @@ export const unlistBodySchema = z.object({
 export const buyBodySchema = z.object({
   listingId: z.string().min(1),
 });
-
-

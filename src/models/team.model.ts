@@ -26,5 +26,3 @@ export type PlayerSubdoc = InferSchemaType<typeof playerSchema> & { _id: mongoos
 export type TeamDocument = InferSchemaType<typeof teamSchema> & { _id: mongoose.Types.ObjectId };
 
 export const TeamModel = mongoose.model("Team", teamSchema);
-
-

@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 import http from "http";
 import { buildApp } from "./app/app.js";
 import { logger } from "./utils/logger.js";
@@ -47,5 +44,3 @@ start().catch((error: unknown) => {
   logger.error({ error }, "Fatal startup error");
   process.exitCode = 1;
 });
-
-

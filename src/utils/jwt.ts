@@ -27,5 +27,3 @@ export function verifyAccessToken(token: string): JwtPayloadShape {
   }
   return { sub, iat: decoded.iat, exp: decoded.exp };
 }
-
-

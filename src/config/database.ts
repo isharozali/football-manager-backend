@@ -13,5 +13,3 @@ export async function connectToDatabase(): Promise<void> {
 
   logger.info({ mongoUri: env.MONGODB_URI }, "Connected to MongoDB");
 }
-
-

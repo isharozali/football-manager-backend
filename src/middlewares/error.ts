@@ -35,5 +35,3 @@ export function httpErrorHandler(
     .status(httpStatus.INTERNAL_SERVER_ERROR)
     .json({ message: "Internal server error", code: "INTERNAL_ERROR" });
 }
-
-

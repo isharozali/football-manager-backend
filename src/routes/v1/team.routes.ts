@@ -6,5 +6,3 @@ export const router = Router();
 
 router.get("/me", requireAuth, teamController.getMyTeam);
 router.post("/create-job", requireAuth, teamController.enqueueTeamCreation);
-
-

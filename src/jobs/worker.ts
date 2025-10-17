@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 import { logger } from "../utils/logger";
 import { connectToDatabase } from "../config/database";
 import { JobModel } from "../models/job.model";
@@ -55,5 +52,3 @@ processJobs().catch((e) => {
   logger.error({ e }, "Worker fatal error");
   process.exitCode = 1;
 });
-
-

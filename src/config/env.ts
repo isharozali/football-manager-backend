@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
 
@@ -6,7 +8,8 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
     PORT: z.coerce.number().int().min(1).max(65535).default(4000),
-    MONGODB_URI: z.string().url().or(z.string().startsWith("mongodb://")),
+    // Accept mongodb:// or mongodb+srv:// URIs
+    MONGODB_URI: z.string().regex(/^mongodb(\+srv)?:\/\/.+/, "Invalid MongoDB connection string"),
     JWT_SECRET: z.string().min(10),
     JWT_EXPIRES_IN: z.string().default("15m"),
     BCRYPT_SALT_ROUNDS: z.coerce.number().int().min(8).max(14).default(12),
@@ -14,7 +17,14 @@ export const env = createEnv({
     CORS_ORIGINS: z
       .string()
       .optional()
-      .transform((val) => (val ? val.split(",").map((s) => s.trim()).filter((s) => s.length > 0) : undefined)),
+      .transform((val) =>
+        val
+          ? val
+              .split(",")
+              .map((s) => s.trim())
+              .filter((s) => s.length > 0)
+          : undefined,
+      ),
   },
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
@@ -27,5 +37,3 @@ export const env = createEnv({
     CORS_ORIGINS: process.env.CORS_ORIGINS,
   },
 });
-
-

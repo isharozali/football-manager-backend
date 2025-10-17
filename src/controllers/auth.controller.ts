@@ -8,5 +8,3 @@ export const authController = {
     res.status(httpStatus.OK).json(result);
   },
 };
-
-

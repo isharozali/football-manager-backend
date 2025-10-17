@@ -21,5 +21,3 @@ export function requireAuth(req: AuthenticatedRequest, res: Response, next: Next
     res.status(httpStatus.UNAUTHORIZED).json({ message: "Invalid or expired token" });
   }
 }
-
-

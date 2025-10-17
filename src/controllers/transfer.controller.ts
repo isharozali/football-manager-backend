@@ -64,5 +64,3 @@ export const transferController = {
     res.status(httpStatus.OK).json({ message: "Purchased" });
   },
 };
-
-

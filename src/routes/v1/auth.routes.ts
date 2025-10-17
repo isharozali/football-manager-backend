@@ -9,10 +9,8 @@ export const router = Router();
 const authRateLimiter = rateLimit({ windowMs: 60 * 1000, max: 20 });
 
 router.post(
-  "/login-or-register",
+  "/",
   authRateLimiter,
   validate("body", loginOrRegisterSchema),
   authController.loginOrRegister,
 );
-
-

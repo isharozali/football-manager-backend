@@ -69,5 +69,3 @@ export function buildApp(): Application {
 
   return app;
 }
-
-

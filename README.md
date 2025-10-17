@@ -18,7 +18,7 @@ A pragmatic Node.js + TypeScript backend for a football fantasy manager. It foll
 
 ### Install
 ```bash
-npm install
+pnpm install
 ```
 
 ### Configure
@@ -34,14 +34,14 @@ BCRYPT_SALT_ROUNDS=12
 
 ### Run (API)
 ```bash
-npm run dev
+pnpm run dev
 ```
 
 API will start on `http://localhost:4000`.
 
 ### Run (Worker)
 ```bash
-npx tsx src/jobs/worker.ts
+pnpm exec tsx src/jobs/worker.ts
 ```
 
 This worker polls MongoDB for pending jobs and processes team creation in the background.
@@ -85,9 +85,9 @@ src/
 ```
 
 ## Development
-- Lint: `npm run lint`
-- Format: `npm run format`
-- Build: `npm run build`
+- Lint: `pnpm run lint`
+- Format: `pnpm run format`
+- Build: `pnpm run build`
 
 ## Time Report
 - Project scaffolding and tooling: ~30m

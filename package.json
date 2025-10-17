@@ -15,6 +15,7 @@
   "author": "Calo Candidate",
   "license": "MIT",
   "type": "module",
+  "packageManager": "pnpm@9.12.0",
   "engines": {
     "node": ">=18.17"
   },

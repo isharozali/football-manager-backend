@@ -1,8 +1,8 @@
 import http from "http";
-import { buildApp } from "./app/app.js";
-import { logger } from "./utils/logger.js";
-import { connectToDatabase } from "./config/database.js";
-import { env } from "./config/env.js";
+import { buildApp } from "./app/app";
+import { logger } from "./utils/logger";
+import { connectToDatabase } from "./config/database";
+import { env } from "./config/env";
 
 const port = env.PORT;
 

@@ -6,7 +6,7 @@ import { logger } from "../utils/logger";
 import { httpErrorHandler, notFoundHandler } from "../middlewares/error";
 import { router as apiRouter } from "../routes";
 import rateLimit from "express-rate-limit";
-import { env } from "../config/env.js";
+import { env } from "../config/env";
 
 export function buildApp(): Application {
   const app = express();

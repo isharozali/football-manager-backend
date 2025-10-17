@@ -1,12 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import { ZodSchema } from "zod";
 import httpStatus from "http-status";
+import { Part } from "../types";
 
-type Part = "body" | "query" | "params";
 
 export function validate(part: Part, schema: ZodSchema<unknown>) {
   return (req: Request, res: Response, next: NextFunction): void => {
-    const parsed = schema.safeParse((req as Record<string, unknown>)[part]);
+    const source = req[part] as unknown;
+    const parsed = schema.safeParse(source);
     if (!parsed.success) {
       res
         .status(httpStatus.BAD_REQUEST)
@@ -17,7 +18,7 @@ export function validate(part: Part, schema: ZodSchema<unknown>) {
         });
       return;
     }
-    (req as Record<string, unknown>)[part] = parsed.data as unknown;
+    req[part] = parsed.data as unknown;
     next();
   };
 }

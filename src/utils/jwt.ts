@@ -1,18 +1,16 @@
-import jwt from "jsonwebtoken";
+import jwt, { type SignOptions, type Secret } from "jsonwebtoken";
 import { env } from "../config/env.js";
+import { JwtPayloadShape } from "../interfaces";
+import { StringValue } from "../types";
 
-export interface JwtPayloadShape {
-  sub: string; // user id
-  iat?: number;
-  exp?: number;
-}
 
 const secret = env.JWT_SECRET;
 const expiresIn = env.JWT_EXPIRES_IN;
 
 export function signAccessToken(subjectUserId: string): string {
   const payload: JwtPayloadShape = { sub: subjectUserId };
-  return jwt.sign(payload, secret, { expiresIn });
+  const options: SignOptions = { expiresIn: expiresIn as StringValue };
+  return jwt.sign(payload, secret as Secret, options);
 }
 
 export function verifyAccessToken(token: string): JwtPayloadShape {

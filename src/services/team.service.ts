@@ -24,7 +24,8 @@ export const teamService = {
 };
 
 export function generateInitialPlayers(): PlayerSubdoc[] {
-  const players: Array<Omit<PlayerSubdoc, "_id">> = [];
+  type NewPlayer = Pick<PlayerSubdoc, "name" | "position" | "price" | "onTransferList">;
+  const players: NewPlayer[] = [];
 
   const add = (count: number, position: PlayerSubdoc["position"], namePrefix: string) => {
     for (let i = 1; i <= count; i += 1) {

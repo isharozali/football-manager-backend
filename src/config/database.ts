@@ -9,6 +9,7 @@ export async function connectToDatabase(): Promise<void> {
   await mongoose.connect(env.MONGODB_URI, {
     serverSelectionTimeoutMS: 5000,
     maxPoolSize: 10,
+    dbName: "football_manager",
   });
 
   logger.info({ mongoUri: env.MONGODB_URI }, "Connected to MongoDB");

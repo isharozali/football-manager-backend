@@ -19,11 +19,14 @@ export const transferService = {
     if (filters.playerName) {
       query.playerName = { $regex: filters.playerName, $options: "i" };
     }
-    if (filters.minPrice) {
-      query.askingPrice = { $gte: filters.minPrice };
-    }
-    if (filters.maxPrice) {
-      query.askingPrice = { $lte: filters.maxPrice };
+    if (filters.minPrice || filters.maxPrice) {
+      query.askingPrice = {};
+      if (filters.minPrice) {
+        query.askingPrice.$gte = filters.minPrice;
+      }
+      if (filters.maxPrice) {
+        query.askingPrice.$lte = filters.maxPrice;
+      }
     }
     if (filters.teamName) {
       query.sellerTeamName = { $regex: filters.teamName, $options: "i" };

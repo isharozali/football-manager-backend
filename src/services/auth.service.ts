@@ -37,7 +37,7 @@ export const authService = {
     } else {
       const ok = await bcrypt.compare(password, user.passwordHash);
       if (!ok) {
-        throw new HttpError(httpStatus.UNAUTHORIZED, "Invalid credentials");
+        throw new HttpError(httpStatus.BAD_REQUEST, "Invalid credentials");
       }
     }
 
